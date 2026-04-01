@@ -1,15 +1,18 @@
 {
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "harness-engineering",
   "description": "Harness Engineering - 3-Agent Pipeline Pattern (Planner/Generator/Evaluator) for Claude Code",
   "owner": {
     "name": "Suhan Lee",
-    "url": "https://github.com/suhanlee"
+    "email": "suhan.lee.k@gmail.com"
   },
   "plugins": [
     {
       "name": "harness",
+      "description": "Harness Engineering - Planner/Generator/Evaluator 3-agent pipeline that iterates until mission complete",
       "source": "./",
-      "description": "Harness Engineering - Planner/Generator/Evaluator 3-agent pipeline that iterates until mission complete"
+      "category": "productivity",
+      "homepage": "https://github.com/suhanlee/harness"
     }
   ]
 }
