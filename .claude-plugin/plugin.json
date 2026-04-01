@@ -1,5 +1,5 @@
 {
-  "name": "harness-engineering",
+  "name": "harness",
   "version": "1.1.0",
   "description": "Harness Engineering - 3-Agent Pipeline Pattern (Planner/Generator/Evaluator) for Claude Code",
   "author": {
