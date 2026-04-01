@@ -2,7 +2,10 @@
   "name": "harness",
   "version": "1.0.0",
   "description": "Harness Engineering - 3-Agent Pipeline Pattern (Planner/Generator/Evaluator) for Claude Code",
-  "author": "Suhan Lee",
+  "author": {
+    "name": "Suhan Lee",
+    "url": "https://github.com/suhanlee"
+  },
   "license": "MIT",
   "homepage": "https://github.com/suhanlee/harness",
   "keywords": [
