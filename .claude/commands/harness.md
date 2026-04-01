@@ -1,7 +1,6 @@
 ---
 description: Harness Engineering - Planner/Generator/Evaluator 3-agent pipeline that iterates until mission complete
-argument-hint: [--manual] [--rounds N] [--threshold N] [mission-description]
-allowed-tools: Read, Write, Edit, Grep, Glob, Bash, WebSearch, WebFetch, Task
+argument-hint: "[--manual] [--rounds N] [--threshold N] [mission-description]"
 ---
 
 # Harness Engineering Orchestrator
