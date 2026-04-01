@@ -41,8 +41,8 @@ Third agent in the Harness Engineering pipeline. Verifies the Generator's output
 
 ### Verdict
 
-- **PASS**: Score >= 8 (configurable threshold)
-- **FAIL**: Score < 8
+- **PASS**: Score >= pass_threshold (default 8, configurable by orchestrator)
+- **FAIL**: Score < pass_threshold
 
 ### Auto-FAIL (regardless of score)
 
