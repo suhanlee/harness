@@ -41,7 +41,7 @@ Install directly from GitHub inside Claude Code:
 /plugin marketplace add suhanlee/harness
 
 # 2. Install plugin
-/plugin install harness@suhanlee-harness
+/plugin install harness@harness-engineering
 
 # 3. Reload plugins
 /reload-plugins
