@@ -74,6 +74,15 @@ Second agent in the Harness Engineering pipeline. Receives the Planner's executi
 - Never hardcode secrets
 - Follow least-privilege principle
 
+## File Handling Limits (Hang Prevention)
+
+When executing tasks that touch many files, follow these limits to prevent agent hangs:
+
+- **Never read more than 5 files in a single parallel batch** before editing
+- If a task requires reading 10+ files for context, batch reads in groups of 5
+- For large files (>300 lines), read only the sections you need to modify using offset/limit
+- Write/Edit operations should also be batched (max 5 parallel edits)
+
 ## Rules
 
 1. Follow the Planner's plan faithfully
@@ -81,3 +90,4 @@ Second agent in the Harness Engineering pipeline. Receives the Planner's executi
 3. Do NOT evaluate quality (that is Evaluator's role)
 4. List ALL changed files in the result report
 5. If a task is not executable, document why
+6. Never read more than 5 files in a single parallel batch to prevent hangs

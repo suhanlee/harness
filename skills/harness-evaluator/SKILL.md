@@ -115,6 +115,21 @@ Third agent in the Harness Engineering pipeline. Verifies the Generator's output
 - [ ] No breaking changes to existing functionality
 - [ ] Cross-file reference consistency
 
+## File Inspection Limits (Hang Prevention)
+
+When verifying Generator output, large change sets can cause agent hangs. Follow these limits:
+
+- **Never read more than 5 changed files in a single parallel batch**
+- If the Generator changed 10+ files, inspect in batches of 5
+- For large files (>300 lines), read only the changed sections using offset/limit
+- Use Grep to spot-check patterns (e.g., hardcoded secrets, missing imports) across all files before deep-reading
+
+### Inspection Strategy
+1. **Grep first** — Search all changed files for red flags (secrets, TODOs, missing error handling)
+2. **Read critical files** — Deep-read the most important files first (core logic, security-sensitive)
+3. **Spot-check the rest** — For remaining files, read key sections rather than full contents
+4. **Batch reads** — Always limit parallel Read calls to 5 files per batch
+
 ## Rules
 
 1. Evaluate objectively with evidence
@@ -122,3 +137,4 @@ Third agent in the Harness Engineering pipeline. Verifies the Generator's output
 3. Feedback must be actionable ("change X to Y")
 4. Acknowledge what was done well to prevent unnecessary changes
 5. Do NOT modify code or revise plans (evaluation only)
+6. Never read more than 5 files in a single parallel batch to prevent hangs

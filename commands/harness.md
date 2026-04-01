@@ -233,6 +233,17 @@ Autopilot (Size: M) / Manual
 2. ...
 ```
 
+## Hang Prevention
+
+Agents can hang when reading too many files at once. All agents MUST follow these limits:
+
+- **Max 5 files per parallel Read batch** — If more files are needed, read in sequential batches of 5
+- **Use Glob/Grep before Read** — Identify relevant files first, then read only what is needed
+- **Large files (>300 lines)** — Read only relevant sections using offset/limit, not the entire file
+- **Batch edits** — Max 5 parallel Write/Edit operations per batch
+
+The orchestrator must include these limits when briefing each agent. If an agent prompt would require reading 10+ files, explicitly instruct it to batch reads in groups of 5.
+
 ## Rules
 
 1. Each agent focuses only on its role (Planner doesn't write code, Generator doesn't evaluate, Evaluator doesn't modify code)
@@ -242,3 +253,4 @@ Autopilot (Size: M) / Manual
 5. Do not exceed max_rounds without user consent
 6. In autopilot mode, proceed immediately after analysis — no confirmation needed
 7. When running multiple agents in parallel, ensure no file conflicts between Generators
+8. All agents must batch file reads (max 5 per parallel call) to prevent hangs

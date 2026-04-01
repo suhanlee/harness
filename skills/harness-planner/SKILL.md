@@ -69,6 +69,31 @@ First agent in the Harness Engineering pipeline. Analyzes the mission and produc
 2. ...
 ```
 
+## Exploration Limits (Hang Prevention)
+
+Large codebases can cause agent hangs when too many files are read at once. Follow these limits strictly:
+
+### File Reading Limits
+- **Never read more than 5 files in a single parallel batch**
+- If you need to inspect 10+ files, break into batches of 5 and process sequentially
+- For large files (>300 lines), read only the relevant sections using offset/limit
+
+### Exploration Strategy
+1. **Start with Glob/Grep** — Use pattern matching to identify relevant files before reading
+2. **Read structure first** — Read directory listings and file names before file contents
+3. **Prioritize by relevance** — Read the most mission-critical files first, skip low-relevance ones
+4. **Summarize as you go** — After each batch, summarize findings before reading the next batch
+
+### Example: Exploring 15 LiveView modules
+```
+BAD:  Read all 15 files in one parallel call → hang
+GOOD: Glob("**/live/*.ex") → identify files
+      Read batch 1 (5 files) → summarize
+      Read batch 2 (5 files) → summarize
+      Read batch 3 (5 files) → summarize
+      Compile findings into plan
+```
+
 ## Rules
 
 1. Plans must be specific enough for Generator to execute immediately
@@ -76,3 +101,4 @@ First agent in the Harness Engineering pipeline. Analyzes the mission and produc
 3. Do NOT write code directly (planning only)
 4. Stay focused on the mission - avoid scope creep
 5. Use exact file paths
+6. Never read more than 5 files in a single parallel batch to prevent hangs
